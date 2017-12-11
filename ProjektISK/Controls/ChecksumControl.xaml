@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="ProjektISK.Controls.ChecksumControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjektISK.Controls"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:ProjektISK.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="0 5 0 0">
+        <Grid.Resources>
+            <converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <RadioButton Grid.ColumnSpan="2" Content="Bit parzystości" 
+                     IsChecked="{Binding SelectedChecksumType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=ParityBit}"/>
+        <RadioButton Name="SumOfBytes" Grid.Row="1" Grid.ColumnSpan="2" Content="Suma bajtów" 
+                     IsChecked="{Binding SelectedChecksumType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=SumOfBytes}"/>
+        <RadioButton Name="Crc" Grid.Row="2" Grid.ColumnSpan="2" Content="CRC" 
+                     IsChecked="{Binding SelectedChecksumType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Crc}"/>
+
+        <TextBox Grid.Column="1" Grid.Row="1" Controls:TextBoxHelper.Watermark="wielkość sumy w bitach" Controls:TextBoxHelper.ClearTextButton="True"
+                 Text="{Binding ChecksumSize}" IsEnabled="{Binding ElementName=SumOfBytes, Path=IsChecked}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Controls:TextBoxHelper.Watermark="wielkość sumy w bitach" Controls:TextBoxHelper.ClearTextButton="True"
+                 Text="{Binding ChecksumSize}" IsEnabled="{Binding ElementName=Crc, Path=IsChecked}"/>
+    </Grid>
+</UserControl>

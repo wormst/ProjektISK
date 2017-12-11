@@ -1,0 +1,76 @@
+﻿<Window x:Class="ProjektISK.SimulatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektISK"
+        xmlns:models="clr-namespace:ProjektISK.Models"
+        mc:Ignorable="d"
+        Title="Symulacja" SizeToContent="Width"
+        WindowStartupLocation="CenterScreen"
+        Height="230"
+        d:DataContext="{d:DesignInstance models:Simulator}">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Warstwa łącza danych">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="Liczba przesłanych ramek"/>
+                    <TextBlock Text="Błędne uznane za błędne"/>
+                    <TextBlock Text="Błędne uznane za poprawne "/>
+                    <TextBlock Text="Poprawne uznane za poprawne"/>
+                    <TextBlock Text="Poprawne uznane za błędne"/>
+                </StackPanel>
+                <StackPanel DataContext="{Binding FramesResults}">
+                    <TextBlock Text="{Binding Processed}"/>
+                    <TextBlock Text="{Binding WrongAsWrong}"/>
+                    <TextBlock Text="{Binding WrongAsProper}"/>
+                    <TextBlock Text="{Binding ProperAsProper}"/>
+                    <TextBlock Text="{Binding ProperAsWrong}"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Warstwa transportowa" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="Liczba przesłanych pakietów"/>
+                    <TextBlock Text="Błędne uznane za błędne"/>
+                    <TextBlock Text="Błędne uznane za poprawne "/>
+                    <TextBlock Text="Poprawne uznane za poprawne"/>
+                    <TextBlock Text="Poprawne uznane za błędne"/>
+                </StackPanel>
+                <StackPanel DataContext="{Binding PacketsResults}">
+                    <TextBlock Text="{Binding Processed}"/>
+                    <TextBlock Text="{Binding WrongAsWrong}"/>
+                    <TextBlock Text="{Binding WrongAsProper}"/>
+                    <TextBlock Text="{Binding ProperAsProper}"/>
+                    <TextBlock Text="{Binding ProperAsWrong}"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <Button Content="Stop" Grid.Row="1" Grid.ColumnSpan="2" 
+                Command="{Binding StopCommand}" IsEnabled="{Binding IsWorking}"/>
+    </Grid>
+</Window>
