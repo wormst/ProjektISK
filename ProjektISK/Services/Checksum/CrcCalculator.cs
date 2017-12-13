@@ -35,9 +35,7 @@ namespace ProjektISK.Services.Checksum
 
         private string GetPolynomial(int length)
         {
-            //TODO return polynomial with correct length
-            //"0x42F0E1EBA9EA3693";
-            string polynomial = "0100001011110000111000011110101110101001111010100011011010010011";
+            string polynomial = "0100001011110000111000011110101110101001111010100011011010010011"; //"0x42F0E1EBA9EA3693"
             string substring = polynomial.Substring(polynomial.Length - length, length);
             return substring;
         }
