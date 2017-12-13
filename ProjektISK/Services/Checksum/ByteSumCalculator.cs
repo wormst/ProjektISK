@@ -11,11 +11,21 @@ namespace ProjektISK.Services.Checksum
         {
             long sumOfBytes = 0;
             int numOfBytes = data.Length / 8;
-            byte[] bytes = new byte[numOfBytes];
+            int tail = 0;
+            if( data.Length % 8 != 0 )
+            {
+                tail = 1;
+            }
+            byte[] bytes = new byte[numOfBytes + tail];
             for (int i = 0; i < numOfBytes; i++)
             {
                 bytes[i] = Convert.ToByte(string.Join("", data.Take(8)), 2);
                 data = data.Remove(0, 8);
+            }
+
+            if( tail == 1 )
+            {
+                bytes[ numOfBytes ] = Convert.ToByte(string.Join("", data.Take(data.Length)), 2);
             }
 
             for (int i = 0; i < bytes.Length; i++)
