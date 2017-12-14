@@ -75,16 +75,21 @@
     </Compile>
     <Compile Include="Converters\StringToByteConverter.cs" />
     <Compile Include="Converters\EnumConverter.cs" />
+    <Compile Include="Enums\ErrorAreaType.cs" />
     <Compile Include="Enums\ErrorPositionType.cs" />
     <Compile Include="Enums\DurationType.cs" />
     <Compile Include="Enums\SizeType.cs" />
     <Compile Include="Infrastructure\ChecksumCalculatorFactory.cs" />
+    <Compile Include="Infrastructure\ErrorGeneratorFactory.cs" />
     <Compile Include="Interfaces\IChecksumCalculator.cs" />
     <Compile Include="Interfaces\IErrorGenerator.cs" />
     <Compile Include="Enums\ChecksumResult.cs" />
+    <Compile Include="Models\ErrorNumbers.cs" />
     <Compile Include="Models\Frame.cs" />
     <Compile Include="Models\Packet.cs" />
     <Compile Include="Models\SimulatorOptions.cs" />
+    <Compile Include="Services\Error\RandomErrorGenerator.cs" />
+    <Compile Include="ViewModels\ErrorsViewModel.cs" />
     <Compile Include="ViewModels\SimulatorResult.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Enums\ChecksumType.cs" />

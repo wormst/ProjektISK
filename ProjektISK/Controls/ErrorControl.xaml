@@ -22,9 +22,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <RadioButton Content="Cały pakiet" GroupName="type" Grid.ColumnSpan="2"/>
-        <RadioButton Content="Liczba ramek" Name="FrameNumberType" GroupName="type" Grid.Row="1"/>
-        <TextBox Grid.Row="2" Margin="25 3 3 3" IsEnabled="{Binding ElementName=FrameNumberType, Path=IsChecked}"/>
+        <RadioButton Content="Cały pakiet" GroupName="area" Grid.ColumnSpan="2"
+                     IsChecked="{Binding ErrorAreaType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=WholePacket}"/>
+        <RadioButton Content="Liczba ramek" Name="FrameNumberType" GroupName="area" Grid.Row="1"
+                     IsChecked="{Binding ErrorAreaType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=NumberOfFrames}"/>
+        <TextBox Grid.Row="2" Margin="25 3 3 3" IsEnabled="{Binding ElementName=FrameNumberType, Path=IsChecked}" 
+                 Text="{Binding FrameNumber, ValidatesOnDataErrors=True}" ToolTip="Określa ile ramek zostanie przekłamanych"/>
 
         <RadioButton Name="Random" Content="Losowe bity" Grid.Column="1" GroupName="errorPosition"
                      IsChecked="{Binding ErrorPositionType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Random}"/>

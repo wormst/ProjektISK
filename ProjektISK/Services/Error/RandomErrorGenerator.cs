@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using ProjektISK.Enums;
 using ProjektISK.Interfaces;
@@ -6,11 +7,11 @@ using ProjektISK.Models;
 
 namespace ProjektISK.Services.Error
 {
-    public class SimpleErrorGenerator : IErrorGenerator
+    public class RandomErrorGenerator : IErrorGenerator
     {
         private readonly ErrorNumbers _errors;
 
-        public SimpleErrorGenerator(ErrorNumbers errors)
+        public RandomErrorGenerator(ErrorNumbers errors)
         {
             _errors = errors;
         }
@@ -20,22 +21,22 @@ namespace ProjektISK.Services.Error
             StringBuilder errorBuilder = new StringBuilder(data.Length);
 
             int errorsToMake = GetNumberOfErrors(data);
-            int startFrom = new Random().Next(0, data.Length - errorsToMake);
-            int errorBitsCount = 0;
 
-            errorBuilder.Append(data.Substring(0, startFrom));
-            for (int i = startFrom; i < data.Length; i++)
+            Random random = new Random();
+            HashSet<int> indexesToMakeErrorOn = new HashSet<int>();
+            while (indexesToMakeErrorOn.Count < errorsToMake && indexesToMakeErrorOn.Count <= data.Length - 2)
+            {
+                int index = random.Next(0, data.Length - 1);
+                if (!indexesToMakeErrorOn.Contains(index))
+                {
+                    indexesToMakeErrorOn.Add(index);
+                }
+            }
+
+            for (int i = 0; i < data.Length; i++)
             {
                 string bit = data.Substring(i, 1);
-                if (errorBitsCount < errorsToMake)
-                {
-                    errorBuilder.Append(Swap(bit));
-                    errorBitsCount++;
-                }
-                else
-                {
-                    errorBuilder.Append(bit);
-                }
+                errorBuilder.Append(indexesToMakeErrorOn.Contains(i) ? Swap(bit) : bit);
             }
 
             return errorBuilder.ToString();

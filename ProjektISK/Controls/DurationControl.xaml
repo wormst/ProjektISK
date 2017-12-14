@@ -29,8 +29,8 @@
                      IsChecked="{Binding DurationType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=NoLimit}"/>
 
         <TextBox IsEnabled="{Binding ElementName=Count, Path=IsChecked}" Grid.Column="1" Grid.Row="0" Margin="2"
-                 Text="{Binding Count}"/>
+                 Text="{Binding Count, ValidatesOnDataErrors=True}" ToolTip="Określa ile pakietów zostanie przesłanych"/>
         <TextBox IsEnabled="{Binding ElementName=Uptime, Path=IsChecked}" Grid.Column="1" Grid.Row="1" Margin="2"
-                 Text="{Binding Uptime}"/>
+                 Text="{Binding Uptime, ValidatesOnDataErrors=True}" ToolTip="Określa czas trwania symulacji w sekundach"/>
     </Grid>
 </UserControl>

@@ -35,18 +35,20 @@
         <GroupBox Header="Warstwa łącza danych">
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <TextBlock Text="Liczba przesłanych ramek"/>
-                    <TextBlock Text="Błędne uznane za błędne"/>
-                    <TextBlock Text="Błędne uznane za poprawne "/>
-                    <TextBlock Text="Poprawne uznane za poprawne"/>
-                    <TextBlock Text="Poprawne uznane za błędne"/>
+                    <TextBlock Text="Liczba przesłanych ramek" FontWeight="Bold"/>
+                    <Separator/>
+                    <TextBlock Text="Błędne uznane za błędne" Foreground="Green"/>
+                    <TextBlock Text="Błędne uznane za poprawne" Foreground="Red"/>
+                    <TextBlock Text="Poprawne uznane za poprawne" Foreground="Green"/>
+                    <TextBlock Text="Poprawne uznane za błędne" Foreground="Red"/>
                 </StackPanel>
                 <StackPanel DataContext="{Binding FramesResults}">
-                    <TextBlock Text="{Binding Processed}"/>
-                    <TextBlock Text="{Binding WrongAsWrong}"/>
-                    <TextBlock Text="{Binding WrongAsProper}"/>
-                    <TextBlock Text="{Binding ProperAsProper}"/>
-                    <TextBlock Text="{Binding ProperAsWrong}"/>
+                    <TextBlock Text="{Binding Processed}" FontWeight="Bold"/>
+                    <Separator/>
+                    <TextBlock Text="{Binding WrongAsWrong}" Foreground="Green"/>
+                    <TextBlock Text="{Binding WrongAsProper}" Foreground="Red"/>
+                    <TextBlock Text="{Binding ProperAsProper}" Foreground="Green"/>
+                    <TextBlock Text="{Binding ProperAsWrong}" Foreground="Red"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -54,18 +56,20 @@
         <GroupBox Header="Warstwa transportowa" Grid.Column="1">
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <TextBlock Text="Liczba przesłanych pakietów"/>
-                    <TextBlock Text="Błędne uznane za błędne"/>
-                    <TextBlock Text="Błędne uznane za poprawne "/>
-                    <TextBlock Text="Poprawne uznane za poprawne"/>
-                    <TextBlock Text="Poprawne uznane za błędne"/>
+                    <TextBlock Text="Liczba przesłanych pakietów" FontWeight="Bold"/>
+                    <Separator/>
+                    <TextBlock Text="Błędne uznane za błędne" Foreground="Green"/>
+                    <TextBlock Text="Błędne uznane za poprawne" Foreground="Red"/>
+                    <TextBlock Text="Poprawne uznane za poprawne" Foreground="Green"/>
+                    <TextBlock Text="Poprawne uznane za błędne" Foreground="Red"/>
                 </StackPanel>
                 <StackPanel DataContext="{Binding PacketsResults}">
-                    <TextBlock Text="{Binding Processed}"/>
-                    <TextBlock Text="{Binding WrongAsWrong}"/>
-                    <TextBlock Text="{Binding WrongAsProper}"/>
-                    <TextBlock Text="{Binding ProperAsProper}"/>
-                    <TextBlock Text="{Binding ProperAsWrong}"/>
+                    <TextBlock Text="{Binding Processed}" FontWeight="Bold"/>
+                    <Separator/>
+                    <TextBlock Text="{Binding WrongAsWrong}" Foreground="Green"/>
+                    <TextBlock Text="{Binding WrongAsProper}" Foreground="Red"/>
+                    <TextBlock Text="{Binding ProperAsProper}" Foreground="Green"/>
+                    <TextBlock Text="{Binding ProperAsWrong}" Foreground="Red"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>

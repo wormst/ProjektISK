@@ -31,6 +31,7 @@ namespace ProjektISK.Models
         public void Simulate()
         {
             var simulationType = _options.DurationModel.DurationType;
+
             if (simulationType == DurationType.Number)
             {
                 for (int packetsCount = 0; packetsCount < _options.DurationModel.Count; packetsCount++)
@@ -38,18 +39,22 @@ namespace ProjektISK.Models
                     ProcessOnePacket();
                 }
             }
+
             if (simulationType == DurationType.Time)
             {
                 Stopwatch timer = Stopwatch.StartNew();
                 long milisecondsToElapse = _options.DurationModel.Uptime * 1000; //uptime is in seconds
+
                 while (timer.ElapsedMilliseconds <= milisecondsToElapse)
                 {
                     ProcessOnePacket();
                 }
+
                 timer.Stop();
                 IsWorking = false;
                 Debug.WriteLine($"Processed {PacketsResults.Processed} packets in {timer.ElapsedMilliseconds} ms.");
             }
+
             if (simulationType == DurationType.NoLimit)
             {
                 IsWorking = true;

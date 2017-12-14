@@ -29,9 +29,9 @@
         <RadioButton Name="Crc" Grid.Row="2" Grid.ColumnSpan="2" Content="CRC" 
                      IsChecked="{Binding SelectedChecksumType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Crc}"/>
 
-        <TextBox Grid.Column="1" Grid.Row="1" Controls:TextBoxHelper.Watermark="wielkość sumy w bitach" Controls:TextBoxHelper.ClearTextButton="True"
-                 Text="{Binding ChecksumSize}" IsEnabled="{Binding ElementName=SumOfBytes, Path=IsChecked}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Controls:TextBoxHelper.Watermark="wielkość sumy w bitach" Controls:TextBoxHelper.ClearTextButton="True"
+        <TextBox Grid.Column="1" Grid.Row="1" ToolTip="Wartość w bitach"
+                 Text="{Binding ChecksumSize, ValidatesOnDataErrors=True}" IsEnabled="{Binding ElementName=SumOfBytes, Path=IsChecked}" />
+        <TextBox Grid.Column="1" Grid.Row="2" ToolTip="Wartość w bitach"
                  Text="{Binding ChecksumSize}" IsEnabled="{Binding ElementName=Crc, Path=IsChecked}"/>
     </Grid>
 </UserControl>

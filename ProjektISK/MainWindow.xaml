@@ -55,11 +55,11 @@
 
         <!--ERRORS-->
         <GroupBox Grid.Row="2" Grid.ColumnSpan="1" Header="Typ przekłamania danych">
-            <controls:ErrorControl />
+            <controls:ErrorControl DataContext="{Binding ErrorsViewModel}"/>
         </GroupBox>
 
         <GroupBox Grid.Row="2" Grid.Column="1" Header="Liczba przekłamań w ramce">
-            <controls:SizeControl DataContext="{Binding }" Watermark="liczba przekłamań w bitach"/>
+            <controls:SizeControl DataContext="{Binding ErrorsSizeViewModel}" Watermark="liczba przekłamań w bitach"/>
         </GroupBox>
 
         <!--DURATION-->

@@ -11,7 +11,7 @@ namespace ProjektISK
         {
             DataContext = simulator;
             InitializeComponent();
-            this._simulator = simulator;
+            _simulator = simulator;
 
             Start();
         }
