@@ -15,25 +15,25 @@ namespace ProjektISK.ViewModels
         public SizeType SizeType
         {
             get => _sizeType;
-            set { _sizeType = value; OnPropertyChanged(); }
+            set { _sizeType = value; OnPropertyChanged(null); }
         }
 
         public int FixedSize
         {
             get => _fixedSize;
-            set { _fixedSize = value; OnPropertyChanged();}
+            set { _fixedSize = value; OnPropertyChanged(null);}
         }
 
         public int RandomStart
         {
             get => _randomStart;
-            set { _randomStart = value; OnPropertyChanged(); }
+            set { _randomStart = value; OnPropertyChanged(null); }
         }
 
         public int RandomEnd
         {
             get => _randomEnd;
-            set { _randomEnd = value; OnPropertyChanged();}
+            set { _randomEnd = value; OnPropertyChanged(null);}
         }
 
         public int GetSize()

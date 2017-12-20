@@ -13,13 +13,13 @@ namespace ProjektISK.ViewModels
         public ChecksumType SelectedChecksumType
         {
             get => _selectedChecksumType;
-            set { _selectedChecksumType = value; OnPropertyChanged(); } 
+            set { _selectedChecksumType = value; OnPropertyChanged(null); } 
         }
 
         public int ChecksumSize
         {
             get => _checksumSize;
-            set { _checksumSize = value; OnPropertyChanged(); }
+            set { _checksumSize = value; OnPropertyChanged(null); }
         }
 
         public string this[string columnName]
