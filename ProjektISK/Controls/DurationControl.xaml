@@ -31,6 +31,7 @@
         <TextBox IsEnabled="{Binding ElementName=Count, Path=IsChecked}" Grid.Column="1" Grid.Row="0" Margin="2"
                  Text="{Binding Count, ValidatesOnDataErrors=True}" ToolTip="Określa ile pakietów zostanie przesłanych"/>
         <TextBox IsEnabled="{Binding ElementName=Uptime, Path=IsChecked}" Grid.Column="1" Grid.Row="1" Margin="2"
-                 Text="{Binding Uptime, ValidatesOnDataErrors=True}" ToolTip="Określa czas trwania symulacji w sekundach"/>
+                 Text="{Binding Uptime, ValidatesOnDataErrors=True}" ToolTip="Określa czas trwania symulacji (w sekundach)"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Visibility="Hidden"/>
     </Grid>
 </UserControl>

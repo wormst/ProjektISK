@@ -55,6 +55,7 @@ namespace ProjektISK.ViewModels
                 Packet = packet,
                 DurationModel = DurationViewModel,
                 ErrorGenerator = ErrorGeneratorFactory.Create(ErrorsViewModel.ErrorPositionType, errorNumbers),
+                FaultyFramesNumber = ErrorsViewModel.LimitFaultyFrames ? ErrorsViewModel.FrameNumber : 0,
                 FrameChecksumType = FrameChecksumViewModel.SelectedChecksumType,
                 PacketChecksumType = PacketChecksumViewModel.SelectedChecksumType
             };

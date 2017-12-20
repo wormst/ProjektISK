@@ -7,8 +7,8 @@ namespace ProjektISK.ViewModels
     public class ErrorsViewModel : ViewModelBase, IDataErrorInfo
     {
         private ErrorPositionType _errorPositionType;
-        private ErrorAreaType _errorAreaType;
         private int _frameNumber = 3;
+        private bool _limitFaultyFrames;
 
         public ErrorPositionType ErrorPositionType
         {
@@ -16,10 +16,10 @@ namespace ProjektISK.ViewModels
             set { _errorPositionType = value; OnPropertyChanged();}
         }
 
-        public ErrorAreaType ErrorAreaType
+        public bool LimitFaultyFrames
         {
-            get => _errorAreaType;
-            set { _errorAreaType = value; OnPropertyChanged(); }
+            get => _limitFaultyFrames;
+            set { _limitFaultyFrames = value; OnPropertyChanged(); }
         }
 
         public int FrameNumber

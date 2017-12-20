@@ -36,9 +36,9 @@
                 <ColumnDefinition Width="0.4*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Margin="3 0 0 0" Text="od"/>
+            <TextBlock Margin="8 0 0 0" Text="od"/>
             <TextBox Grid.Column="1" Text="{Binding RandomStart, ValidatesOnDataErrors=True}"/>
-            <TextBlock Margin="3 0 0 0" Grid.Column="2" Text="do"/>
+            <TextBlock Margin="8 0 0 0" Grid.Column="2" Text="do"/>
             <TextBox Grid.Column="3" Text="{Binding RandomEnd, ValidatesOnDataErrors=True}"/>
         </Grid>
     </Grid>

@@ -18,20 +18,25 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <RadioButton Content="Cały pakiet" GroupName="area" Grid.ColumnSpan="2"
+        <RadioButton Name="Random" Content="Losowe bity" Grid.Row="0" GroupName="errorPosition"
+                     IsChecked="{Binding ErrorPositionType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Random}"/>
+        <RadioButton Name="Neighbours" Content="Sąsiadujące bity" Grid.Row="1" GroupName="errorPosition"
+                     IsChecked="{Binding ErrorPositionType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Neighbours}"/>
+
+        <TextBox Grid.Row="0" Grid.Column="1" Visibility="Hidden"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Visibility="Hidden"/>
+        
+        <CheckBox Content="Ogranicz liczbę przekłamanych ramek" ToolTip="Ta opcja wyłącza również przekłamanie sumy kontrolnej pakietu" Grid.Row="2"
+                  IsChecked="{Binding LimitFaultyFrames}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="25 3 3 3" IsEnabled="{Binding ElementName=FrameNumberType, Path=IsChecked}" 
+                 Text="{Binding FrameNumber, ValidatesOnDataErrors=True}" ToolTip="Określa ile ramek zostanie przekłamanych"/>
+        <!--<RadioButton Content="Cały pakiet" GroupName="area" Grid.ColumnSpan="2"
                      IsChecked="{Binding ErrorAreaType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=WholePacket}"/>
         <RadioButton Content="Liczba ramek" Name="FrameNumberType" GroupName="area" Grid.Row="1"
-                     IsChecked="{Binding ErrorAreaType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=NumberOfFrames}"/>
-        <TextBox Grid.Row="2" Margin="25 3 3 3" IsEnabled="{Binding ElementName=FrameNumberType, Path=IsChecked}" 
-                 Text="{Binding FrameNumber, ValidatesOnDataErrors=True}" ToolTip="Określa ile ramek zostanie przekłamanych"/>
-
-        <RadioButton Name="Random" Content="Losowe bity" Grid.Column="1" GroupName="errorPosition"
-                     IsChecked="{Binding ErrorPositionType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Random}"/>
-        <RadioButton Name="Neighbours" Grid.Row="1" Content="Sąsiadujące bity" Grid.Column="1" GroupName="errorPosition"
-                     IsChecked="{Binding ErrorPositionType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Neighbours}"/>
+                     IsChecked="{Binding ErrorAreaType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=NumberOfFrames}"/>-->
     </Grid>
 </UserControl>

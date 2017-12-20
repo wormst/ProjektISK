@@ -8,7 +8,7 @@
         xmlns:controls="clr-namespace:ProjektISK.Controls"
         xmlns:viewModels="clr-namespace:ProjektISK.ViewModels"
         mc:Ignorable="d"
-        Title="Projekt ISK" MinHeight="685" MinWidth="820" Height="685" Width="820" WindowStartupLocation="CenterScreen"
+        Title="Projekt ISK" MinHeight="665" MinWidth="820" Height="665" Width="820" WindowStartupLocation="CenterScreen"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
     <Grid Margin="5">
         <Grid.Resources>
@@ -36,55 +36,71 @@
         </Grid.ColumnDefinitions>
         
         <!-- FRAME -->
-        <GroupBox Grid.Row="0" Grid.RowSpan="2" Header="Ustawienia ramki">
+        <GroupBox Grid.Row="0" Grid.RowSpan="2" Header="  Ustawienia ramki">
             <StackPanel Grid.IsSharedSizeScope="True">
                 <StackPanel.Resources>
                     <Style TargetType="GroupBox">
-                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="Margin" Value="1"/>
                     </Style>
                 </StackPanel.Resources>
                 <GroupBox Header="Suma kontrolna">
-                    <controls:ChecksumControl DataContext="{Binding FrameChecksumViewModel}" />
+                    <controls:ChecksumControl DataContext="{Binding FrameChecksumViewModel}" Margin="4"/>
                 </GroupBox>
-
                 <GroupBox Header="Rozmiar">
-                    <controls:SizeControl DataContext="{Binding FrameSizeViewModel}"/>
+                    <controls:SizeControl DataContext="{Binding FrameSizeViewModel}" Margin="4"/>
                 </GroupBox>
             </StackPanel>
         </GroupBox>
 
         <!-- PACKET -->
-        <GroupBox Grid.Column="1" Grid.RowSpan="2" Header="Ustawienia pakietu">
-            <StackPanel Grid.IsSharedSizeScope="True">
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Header="  Ustawienia pakietu">
+            <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="GroupBox">
-                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="Margin" Value="1"></Setter>
                     </Style>
                 </StackPanel.Resources>
                 <GroupBox Header="Suma kontrolna pakietu">
-                    <controls:ChecksumControl DataContext="{Binding PacketChecksumViewModel}"/>
+                    <controls:ChecksumControl DataContext="{Binding PacketChecksumViewModel}" Margin="4"/>
                 </GroupBox>
                 <GroupBox Header="Liczba ramek w pakiecie">
-                    <controls:SizeControl DataContext="{Binding PacketSizeViewModel}"/>
+                    <controls:SizeControl DataContext="{Binding PacketSizeViewModel}" Margin="4"/>
                 </GroupBox>
             </StackPanel>
         </GroupBox>
 
-        <!--ERRORS-->
-        <GroupBox Grid.Row="2" Grid.ColumnSpan="1" Header="Typ przekłamania danych">
-            <controls:ErrorControl DataContext="{Binding ErrorsViewModel}"/>
+        <!-- DATA ERRORS -->
+        <GroupBox  Header="  Przekłamanie danych" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0">
+            <StackPanel Grid.IsSharedSizeScope="True">
+                <StackPanel.Resources>
+                    <Style TargetType="GroupBox">
+                        <Setter Property="Margin" Value="1"/>
+                    </Style>
+                </StackPanel.Resources>
+                <GroupBox Header="Typ przekłamania danych">
+                    <controls:ErrorControl DataContext="{Binding ErrorsViewModel}" Margin="4"/>
+                </GroupBox>
+                <GroupBox Header="Liczba przekłamań">
+                    <controls:SizeControl DataContext="{Binding ErrorsSizeViewModel}" Watermark="liczba przekłamań w bitach" Margin="4"/>
+                </GroupBox>
+            </StackPanel>
         </GroupBox>
 
-        <GroupBox Grid.Row="2" Grid.Column="1" Header="Liczba przekłamań w ramce">
-            <controls:SizeControl DataContext="{Binding ErrorsSizeViewModel}" Watermark="liczba przekłamań w bitach"/>
+        <!-- SIMULATION -->
+        <GroupBox  Header="  Symulacja" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1">
+            <StackPanel Grid.IsSharedSizeScope="True">
+                <StackPanel.Resources>
+                    <Style TargetType="GroupBox">
+                        <Setter Property="Margin" Value="1"/>
+                    </Style>
+                </StackPanel.Resources>
+                <GroupBox Header="Czas działania">
+                    <controls:DurationControl DataContext="{Binding DurationViewModel}"/>
+                </GroupBox>
+            </StackPanel>
         </GroupBox>
-
-        <!--DURATION-->
-        <GroupBox Grid.Row="3" Grid.ColumnSpan="2" Header="Czas działania">
-            <controls:DurationControl DataContext="{Binding DurationViewModel}"/>
-        </GroupBox>
-
-        <Grid Grid.Row="4" Grid.ColumnSpan="2">
+        
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0">
             <Button Content="Start" Command="{Binding StartCommand}"/>
         </Grid>
     </Grid>

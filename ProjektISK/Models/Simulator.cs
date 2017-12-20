@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using ProjektISK.Enums;
 using ProjektISK.Infrastructure;
 using ProjektISK.ViewModels;
@@ -68,7 +70,8 @@ namespace ProjektISK.Models
         private void ProcessOnePacket()
         {
             Packet clonedPacket = _options.Packet.DeepClone();
-            string dataWithError = _options.ErrorGenerator.MakeErrors(clonedPacket.GetBytes());
+            string data = clonedPacket.GetBytes();
+            string dataWithError = GetDataWithError(clonedPacket, data);
 
             string framesOnlyData =
                 dataWithError.Substring(0, dataWithError.Length - _options.Packet.Checksum.Length);
@@ -81,10 +84,49 @@ namespace ProjektISK.Models
             PacketsResults.AddResult(CheckPacket(dataWithError));
         }
 
+        private string GetDataWithError(Packet clonedPacket, string data)
+        {
+            string dataWithError;
+            if (_options.FaultyFramesNumber == 0) //make error on whole packet
+            {
+                dataWithError = _options.ErrorGenerator.MakeErrors(data);
+            }
+            else
+            {
+                StringBuilder dataWithErrorBuilder = new StringBuilder();
+
+                if (_options.FaultyFramesNumber > clonedPacket.Frames.Count)
+                    _options.FaultyFramesNumber = clonedPacket.Frames.Count;
+
+                Random random = new Random();
+                HashSet<Frame> frameToMakeErrorOn = new HashSet<Frame>();
+                while (frameToMakeErrorOn.Count < _options.FaultyFramesNumber)
+                {
+                    Frame frame = clonedPacket.Frames[random.Next(0, clonedPacket.Frames.Count - 1)];
+                    if (!frameToMakeErrorOn.Contains(frame))
+                    {
+                        frameToMakeErrorOn.Add(frame);
+                    }
+                }
+
+                foreach (Frame frame in clonedPacket.Frames)
+                {
+                    dataWithErrorBuilder.Append(frameToMakeErrorOn.Contains(frame)
+                        ? _options.ErrorGenerator.MakeErrors(frame.GetFrame())
+                        : frame.GetFrame());
+                }
+
+                dataWithError = dataWithErrorBuilder.ToString();
+            }
+
+            return dataWithError;
+        }
+
         private List<ChecksumResult> CheckFrames(string dataWithError)
         {
             List<ChecksumResult> results = new List<ChecksumResult>();
 
+            //TODO: this could be done once
             Frame exampleFrame = _options.Packet.Frames.First();
             int frameLength = exampleFrame.GetFrame().Length;
             int frameChecksumLength = exampleFrame.Checksum.Length;
@@ -92,6 +134,7 @@ namespace ProjektISK.Models
 
             for (int i = 0; i < dataWithError.Length / frameLength; i++)
             {
+                //TODO: extract retrieving this data
                 string data = dataWithError.Substring(i * frameLength, frameDataLength);
                 string checksumFromData = dataWithError.Substring(i * frameLength + data.Length, frameChecksumLength);
                 string recalculatedChecksum = ChecksumCalculatorFactory.Create(_options.FrameChecksumType)
@@ -108,6 +151,7 @@ namespace ProjektISK.Models
 
         private ChecksumResult CheckPacket(string dataWithError)
         {
+            //TODO: extract retrieving this data
             string dataWithoutChecksum =
                 dataWithError.Substring(0, dataWithError.Length - _options.Packet.Checksum.Length);
             string receivedChecksum = dataWithError.Substring(dataWithError.Length - _options.Packet.Checksum.Length);

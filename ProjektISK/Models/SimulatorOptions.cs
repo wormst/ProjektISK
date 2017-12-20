@@ -12,5 +12,6 @@ namespace ProjektISK.Models
         public IErrorGenerator ErrorGenerator { get; set; }
         public ChecksumType FrameChecksumType { get; set; }
         public ChecksumType PacketChecksumType { get; set; }
+        public int FaultyFramesNumber { get; set; }
     }
 }

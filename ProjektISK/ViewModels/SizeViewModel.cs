@@ -9,7 +9,7 @@ namespace ProjektISK.ViewModels
     {
         private SizeType _sizeType;
         private int _fixedSize = 5;
-        private int _randomStart = 0;
+        private int _randomStart = 1;
         private int _randomEnd = 5;
 
         public SizeType SizeType
@@ -58,7 +58,7 @@ namespace ProjektISK.ViewModels
                 }
                 else if (columnName == nameof(RandomStart) || columnName == nameof(RandomEnd))
                 {
-                    if (RandomStart >= RandomEnd || RandomStart < 0)
+                    if (RandomStart >= RandomEnd || RandomStart <= 0)
                     {
                         IsValid = false;
                         return "Niepoprawna wartość!";
